@@ -5,10 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>andrzejkar.github.io</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-       
+		<style>img.th {cursor: pointer;}</style>
     </head>
     <body>
         <div class="container mt-4">
@@ -20,7 +21,7 @@
 						<div class="card-header">FullCalendar, Laravel, Boorstap</div>
 						<div class="card-body text-center">
 							<p>
-								<a href="fc_l_b.png" target="_blank"><img alt="" src="fc_l_b.png" width="200px" style="border: 1px solid blue"></a>
+								<img alt="" class="th" src="fc_l_b.png" width="200px" style="border: 1px solid blue" data-bs-toggle="modal" data-bs-target="#modal" />
 							</p>
 							<p>
 								<a href="https://github.com/andrzejkar/fullcalendarlaravel" class="btn btn-primary">click</a>
@@ -33,7 +34,7 @@
 						<div class="card-header">Password generator</div>
 						<div class="card-body text-center">
 							<p>
-								<a href="pg.png" target="_blank"><img alt="" src="pg.png" width="200px" style="border: 1px solid blue"></a>
+								<img alt="" class="th" src="pg.png" height="124px" style="border: 1px solid blue" data-bs-toggle="modal" data-bs-target="#modal" />
 							</p>
 							<p>
 								<a href="https://github.com/andrzejkar/password_generator" class="btn btn-primary">click</a>
@@ -43,5 +44,29 @@
 				</div>
 			</div>
 		</div>	
+		
+		<div class="modal fade" id="modal" tabindex="-1">
+			<div class="modal-dialog modal-fullscreen">
+				<div class="modal-content">
+					<div class="modal-header">
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body text-center" id="preview"></div>
+				</div>
+			</div>
+		</div>
+		
+		<script>
+			const myModal = document.getElementById('modal');
+			myModal.addEventListener('show.bs.modal', event => {
+				const button = event.relatedTarget;
+				const image = button.getAttribute('src');
+
+				const modalBody = myModal.querySelector('.modal-body');
+
+				modalBody.innerHTML = '<img src="'+image+'">';
+				console.log(image);
+			})
+		</script>
     </body>
 </html>
